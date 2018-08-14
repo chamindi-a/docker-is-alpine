@@ -39,14 +39,8 @@ RUN  apk add --update --no-cache \
      netcat-openbsd && \
      rm -rf /var/cache/apk/*
 
-
 RUN  addgroup -S ${USER_GROUP} ; \
      adduser -D -S -G ${USER_GROUP} ${USER} ;
-
-#RUN apk add --no-cache openjdk7 && \
-#ln -sf "${JAVA_HOME}/bin/"* "/usr/bin/";
-
-#RUN apk --update add openjdk-8-jdk;
 
 # copy wso2 product distribution zip files to user's home directory and set ownership
 COPY --chown=wso2carbon:wso2 ${FILES}/${WSO2_SERVER_PACK} ${USER_HOME}/${WSO2_SERVER_PACK}
@@ -80,3 +74,4 @@ ENV WSO2_SERVER_HOME=${WSO2_SERVER_HOME} \
 EXPOSE 4000 9764 9444 7712 7612 11225 10006 11001 11501 8082 4041
 
 ENTRYPOINT ${WORKING_DIRECTORY}/init.sh
+
